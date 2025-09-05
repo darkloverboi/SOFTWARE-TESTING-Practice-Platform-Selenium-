@@ -110,13 +110,13 @@ export const Layout = ({ children }: LayoutProps) => {
 
           {/* Contact Section */}
           <div className="text-center mb-8">
-            <h3 className="text-xl font-semibold text-header-fg mb-4">Contact</h3>
-            <div className="flex flex-col md:flex-row justify-center items-center gap-6 text-header-fg">
+            <h3 className="text-xl font-semibold text-header-fg mb-6">Contact</h3>
+            <div className="flex flex-col md:flex-row justify-center items-center gap-4">
               <a 
                 href="https://www.instagram.com/darkloverboi?igsh=OXR1eWJ3enppaTYy" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-accent transition-colors"
+                className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all duration-300 transform hover:scale-105 shadow-lg"
                 id="contact-instagram"
               >
                 📩 Instagram: @darkloverboi
@@ -125,14 +125,14 @@ export const Layout = ({ children }: LayoutProps) => {
                 href="https://www.linkedin.com/in/shebink1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-primary transition-colors"
+                className="bg-primary hover:bg-primary-hover text-primary-foreground px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all duration-300 transform hover:scale-105 shadow-lg"
                 id="contact-linkedin"
               >
                 🔗 LinkedIn: Shebin K Babu
               </a>
               <a 
                 href="mailto:kshebin86@gmail.com"
-                className="flex items-center gap-2 hover:text-success transition-colors"
+                className="bg-success hover:bg-success text-success-foreground px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all duration-300 transform hover:scale-105 shadow-lg"
                 id="contact-email"
               >
                 📧 Email: kshebin86@gmail.com
