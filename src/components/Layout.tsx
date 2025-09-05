@@ -60,29 +60,29 @@ export const Layout = ({ children }: LayoutProps) => {
       </main>
 
       {/* Footer - DARKLOVERBOI PRESENCE */}
-      <footer className="bg-header-bg mt-16 py-12">
+      <footer className="bg-header-bg mt-8 py-6">
         <div className="container mx-auto px-4">
           {/* Header */}
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-header-fg mb-2">
+          <div className="text-center mb-4">
+            <h2 className="text-lg font-bold text-header-fg">
               ✨ DARKLOVERBOI PRESENCE – Testing Website for Free ✨
             </h2>
           </div>
 
           {/* Credits Section */}
-          <div className="text-center mb-8">
-            <h3 className="text-xl font-semibold text-header-fg mb-4">Credits</h3>
-            <div className="space-y-3">
+          <div className="text-center mb-4">
+            <h3 className="text-lg font-semibold text-header-fg mb-2">Credits</h3>
+            <div className="space-y-1">
               <div>
-                <span className="text-3xl font-bold text-primary">Developed by: Shebin K Babu (Ben)</span>
+                <span className="text-2xl font-extrabold tracking-wide text-header-fg">Developed by: Shebin K Babu (Ben)</span>
               </div>
               <div>
-                <span className="text-xl font-semibold text-accent">Co Developer: Rakshitha M</span>
+                <span className="text-base font-semibold text-accent">Co Developer: Rakshitha M</span>
               </div>
-              <div className="text-lg">
+              <div className="text-sm">
                 <span className="text-success font-semibold">Teacher & Mentor: Shreedhar Sir</span>
                 <br />
-                <span className="text-header-fg text-sm italic">
+                <span className="text-header-fg text-xs italic">
                   (Special thanks for teaching me testing – this website is my gratitude and return gift)
                 </span>
               </div>
@@ -90,11 +90,11 @@ export const Layout = ({ children }: LayoutProps) => {
           </div>
 
           {/* About Me Section */}
-          <div className="max-w-4xl mx-auto text-center mb-8">
-            <h3 className="text-xl font-semibold text-header-fg mb-4">About Me</h3>
-            <div className="text-header-fg space-y-3 leading-relaxed">
+          <div className="max-w-3xl mx-auto text-center mb-4">
+            <h3 className="text-lg font-semibold text-header-fg mb-2">About Me</h3>
+            <div className="text-header-fg text-sm space-y-1 leading-relaxed">
               <p>
-                Hi, I'm <span className="text-primary font-semibold">Shebin (Ben)</span>. 
+                Hi, I'm <span className="font-semibold">Shebin (Ben)</span>. 
                 I created this project to help students and teachers practice software testing in one place.
               </p>
               <p>
@@ -109,14 +109,14 @@ export const Layout = ({ children }: LayoutProps) => {
           </div>
 
           {/* Contact Section */}
-          <div className="text-center mb-8">
-            <h3 className="text-xl font-semibold text-header-fg mb-6">Contact</h3>
-            <div className="flex flex-col md:flex-row justify-center items-center gap-4">
+          <div className="text-center mb-4">
+            <h3 className="text-lg font-semibold text-header-fg mb-3">Contact</h3>
+            <div className="flex flex-col md:flex-row justify-center items-center gap-2">
               <a 
                 href="https://www.instagram.com/darkloverboi?igsh=OXR1eWJ3enppaTYy" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 transition-all duration-300 transform hover:scale-105 shadow-lg"
                 id="contact-instagram"
               >
                 📩 Instagram: @darkloverboi
@@ -125,14 +125,14 @@ export const Layout = ({ children }: LayoutProps) => {
                 href="https://www.linkedin.com/in/shebink1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-primary hover:bg-primary-hover text-primary-foreground px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="bg-primary hover:bg-primary-hover text-primary-foreground px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 transition-all duration-300 transform hover:scale-105 shadow-lg"
                 id="contact-linkedin"
               >
                 🔗 LinkedIn: Shebin K Babu
               </a>
               <a 
                 href="mailto:kshebin86@gmail.com"
-                className="bg-success hover:bg-success text-success-foreground px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="bg-success hover:bg-success text-success-foreground px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 transition-all duration-300 transform hover:scale-105 shadow-lg"
                 id="contact-email"
               >
                 📧 Email: kshebin86@gmail.com
@@ -141,11 +141,11 @@ export const Layout = ({ children }: LayoutProps) => {
           </div>
 
           {/* Closing Note */}
-          <div className="text-center border-t border-nav-border pt-6">
-            <p className="text-header-fg font-medium">
+          <div className="text-center border-t border-nav-border pt-3">
+            <p className="text-header-fg font-medium text-sm">
               Wishing all learners to skill up 🚀 Congratulations on selecting this website for your testing journey.
             </p>
-            <p className="text-muted-foreground text-sm mt-2">
+            <p className="text-muted-foreground text-xs mt-1">
               © 2024 DLB Software Testing Web - Built for Selenium Automation Practice
             </p>
           </div>
