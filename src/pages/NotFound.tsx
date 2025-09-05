@@ -1,5 +1,8 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { Layout } from "@/components/Layout";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const NotFound = () => {
   const location = useLocation();
@@ -12,15 +15,27 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">404</h1>
-        <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
-        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
-          Return to Home
-        </a>
+    <Layout>
+      <div className="max-w-md mx-auto text-center">
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-6xl font-bold text-destructive mb-4">404</CardTitle>
+            <CardTitle>Page Not Found</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-muted-foreground">
+              Oops! The page you're looking for doesn't exist.
+            </p>
+            <p className="text-sm text-muted-foreground">
+              You tried to access: <code className="bg-muted px-2 py-1 rounded">{location.pathname}</code>
+            </p>
+            <Button asChild className="w-full">
+              <a href="/">Return to Home</a>
+            </Button>
+          </CardContent>
+        </Card>
       </div>
-    </div>
+    </Layout>
   );
 };
 
