@@ -13,6 +13,7 @@ import Alerts from "./pages/Alerts";
 import Dynamic from "./pages/Dynamic";
 import Advanced from "./pages/Advanced";
 import Recorder from "./pages/Recorder";
+import RecordedActions from "./pages/RecordedActions";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/dynamic" element={<Dynamic />} />
           <Route path="/advanced" element={<Advanced />} />
           <Route path="/recorder" element={<Recorder />} />
+          <Route path="/recorded-actions" element={<RecordedActions />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

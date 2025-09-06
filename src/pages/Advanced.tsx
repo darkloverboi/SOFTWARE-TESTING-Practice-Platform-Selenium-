@@ -62,12 +62,50 @@ export default function Advanced() {
   const [apiData, setApiData] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
+  const [captchaText, setCaptchaText] = useState("");
+  const [captchaInput, setCaptchaInput] = useState("");
+  const [captchaVerified, setCaptchaVerified] = useState<boolean | null>(null);
 
   const shadowHostRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useShadowDOM(shadowHostRef);
+
+  // Generate random captcha text
+  const generateCaptcha = () => {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let result = '';
+    const length = Math.floor(Math.random() * 3) + 6; // 6-8 characters
+    for (let i = 0; i < length; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+  };
+
+  // Initialize captcha on component mount
+  useEffect(() => {
+    setCaptchaText(generateCaptcha());
+  }, []);
+
+  // Refresh captcha
+  const refreshCaptcha = () => {
+    setCaptchaText(generateCaptcha());
+    setCaptchaInput("");
+    setCaptchaVerified(null);
+    toast("New captcha generated!");
+  };
+
+  // Verify captcha
+  const verifyCaptcha = () => {
+    const isCorrect = captchaInput.toUpperCase() === captchaText.toUpperCase();
+    setCaptchaVerified(isCorrect);
+    if (isCorrect) {
+      toast.success("Captcha verified successfully!");
+    } else {
+      toast.error("Incorrect captcha code!");
+    }
+  };
 
   // Simulate API fetch
   const simulateAPIFetch = async () => {
@@ -676,18 +714,52 @@ export default function Advanced() {
           </CardContent>
         </Card>
 
-        {/* Captcha Placeholder */}
+        {/* Dynamic Captcha */}
         <Card>
           <CardHeader>
-            <CardTitle>Captcha (Non-functional)</CardTitle>
+            <CardTitle>Dynamic Captcha</CardTitle>
+            <CardDescription>Interactive captcha with refresh functionality</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="border-2 border-dashed border-muted-foreground/25 p-8 text-center bg-muted/30" id="captcha-container">
-              <div className="bg-white p-4 rounded inline-block border">
-                <p className="text-lg font-mono mb-2">CAPTCHA: AB5C9</p>
-                <Input placeholder="Enter captcha code" className="mb-2" id="captcha-input" />
-                <Button size="sm" id="captcha-verify">Verify</Button>
+            <div className="flex items-center gap-4">
+              <div 
+                className="relative p-4 bg-gradient-to-r from-blue-100 to-purple-100 border-2 border-dashed border-gray-400 rounded font-mono text-lg tracking-wider select-none" 
+                id="captcha-display"
+                style={{
+                  background: `linear-gradient(45deg, #f0f9ff, #faf5ff),
+                              repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 4px)`,
+                  textShadow: '1px 1px 2px rgba(0,0,0,0.3)',
+                  letterSpacing: '0.2em'
+                }}
+              >
+                {captchaText}
+                <div className="absolute inset-0 pointer-events-none">
+                  <svg width="100%" height="100%" className="absolute inset-0">
+                    <line x1="0" y1="50%" x2="100%" y2="30%" stroke="rgba(0,0,0,0.2)" strokeWidth="1"/>
+                    <line x1="0" y1="30%" x2="100%" y2="70%" stroke="rgba(0,0,0,0.2)" strokeWidth="1"/>
+                  </svg>
+                </div>
               </div>
+              <Button variant="outline" onClick={refreshCaptcha} id="captcha-refresh">
+                🔄 Refresh
+              </Button>
+            </div>
+            <div className="mt-4 space-y-2">
+              <Input 
+                placeholder="Enter captcha code" 
+                className="max-w-xs" 
+                id="captcha-input"
+                value={captchaInput}
+                onChange={(e) => setCaptchaInput(e.target.value)}
+              />
+              <Button onClick={verifyCaptcha} id="captcha-verify">
+                Verify Captcha
+              </Button>
+              {captchaVerified !== null && (
+                <p className={`text-sm ${captchaVerified ? 'text-green-600' : 'text-red-600'}`} id="captcha-result">
+                  {captchaVerified ? '✅ Captcha verified successfully!' : '❌ Incorrect captcha code'}
+                </p>
+              )}
             </div>
           </CardContent>
         </Card>

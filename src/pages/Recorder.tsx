@@ -90,6 +90,11 @@ export default function Recorder() {
   };
 
   const exportToPDF = () => {
+    if (testSteps.length === 0) {
+      toast.error("No test steps to export");
+      return;
+    }
+
     const doc = new jsPDF();
     
     // Title
@@ -129,7 +134,83 @@ export default function Recorder() {
     toast.success("PDF exported successfully!");
   };
 
+  const exportToDocx = () => {
+    if (testSteps.length === 0) {
+      toast.error("No test steps to export");
+      return;
+    }
+
+    // Create HTML content for DOCX conversion
+    let htmlContent = `
+      <html>
+        <head>
+          <title>Test Case Recording</title>
+          <style>
+            body { font-family: Arial, sans-serif; }
+            table { border-collapse: collapse; width: 100%; }
+            th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+            th { background-color: #4287ca; color: white; }
+            .header { margin-bottom: 20px; }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <h1>Test Case Recording</h1>
+            <p>Generated on: ${new Date().toLocaleString()}</p>
+            <p>Total Steps: ${testSteps.length}</p>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Step No.</th>
+                <th>Action Type</th>
+                <th>Target Element</th>
+                <th>Value</th>
+                <th>Expected Result</th>
+              </tr>
+            </thead>
+            <tbody>
+    `;
+
+    testSteps.forEach(step => {
+      htmlContent += `
+        <tr>
+          <td>${step.stepNo}</td>
+          <td>${step.actionType}</td>
+          <td>${step.targetElement}</td>
+          <td>${step.value || '-'}</td>
+          <td>${step.expectedResult || '-'}</td>
+        </tr>
+      `;
+    });
+
+    htmlContent += `
+            </tbody>
+          </table>
+        </body>
+      </html>
+    `;
+
+    // Create blob and download
+    const blob = new Blob([htmlContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'test-case-recording.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    toast.success("HTML file exported successfully! (Open with Word to convert to DOCX)");
+  };
+
   const copyToClipboard = () => {
+    if (testSteps.length === 0) {
+      toast.error("No test steps to copy");
+      return;
+    }
+
     let markdownTable = '| Step No. | Action Type | Target Element | Value | Expected Result |\n';
     markdownTable += '|----------|-------------|----------------|-------|----------------|\n';
     
@@ -278,6 +359,10 @@ export default function Recorder() {
                   <Button onClick={copyToClipboard} variant="outline" id="copy-markdown-btn">
                     <Copy className="mr-2 h-4 w-4" />
                     Copy Markdown
+                  </Button>
+                  <Button onClick={exportToDocx} variant="outline" id="export-docx-btn">
+                    <Download className="mr-2 h-4 w-4" />
+                    Export HTML/DOCX
                   </Button>
                   <Button onClick={exportToPDF} id="export-pdf-btn">
                     <Download className="mr-2 h-4 w-4" />

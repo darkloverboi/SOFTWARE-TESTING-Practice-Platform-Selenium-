@@ -1,5 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import { InspectButton } from "./InspectButton";
+import { useActionRecorder } from "@/hooks/useActionRecorder";
+import { Play, Square } from "lucide-react";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -7,6 +10,7 @@ interface LayoutProps {
 
 export const Layout = ({ children }: LayoutProps) => {
   const location = useLocation();
+  const { isRecording, startRecording, stopRecording } = useActionRecorder();
   
   const navItems = [
     { path: "/", label: "Home", id: "nav-home" },
@@ -19,6 +23,7 @@ export const Layout = ({ children }: LayoutProps) => {
     { path: "/dynamic", label: "Dynamic Content", id: "nav-dynamic" },
     { path: "/advanced", label: "Advanced Testing", id: "nav-advanced" },
     { path: "/recorder", label: "Test Recorder", id: "nav-recorder" },
+    { path: "/recorded-actions", label: "Recorded Actions", id: "nav-recorded-actions" },
   ];
 
   return (
@@ -39,21 +44,49 @@ export const Layout = ({ children }: LayoutProps) => {
       {/* Navigation */}
       <nav className="bg-nav-bg border-b border-nav-border shadow-sm">
         <div className="container mx-auto px-4 py-3">
-          <div className="flex flex-wrap gap-2">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                id={item.id}
-                className={`px-4 py-2 rounded-md transition-colors ${
-                  location.pathname === item.path
-                    ? "bg-primary text-primary-foreground"
-                    : "text-foreground hover:bg-secondary hover:text-secondary-foreground"
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
+          <div className="flex flex-wrap items-center justify-between">
+            <div className="flex flex-wrap gap-2">
+              {navItems.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  id={item.id}
+                  className={`px-4 py-2 rounded-md transition-colors ${
+                    location.pathname === item.path
+                      ? "bg-primary text-primary-foreground"
+                      : "text-foreground hover:bg-secondary hover:text-secondary-foreground"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+            
+            {/* Global Recording Button */}
+            <div className="action-recorder-controls">
+              {!isRecording ? (
+                <Button 
+                  size="sm" 
+                  onClick={startRecording}
+                  className="bg-green-600 hover:bg-green-700 text-white"
+                  id="global-start-recording"
+                >
+                  <Play className="mr-1 h-3 w-3" />
+                  Start Recording
+                </Button>
+              ) : (
+                <Button 
+                  size="sm" 
+                  onClick={stopRecording}
+                  variant="destructive"
+                  className="animate-pulse"
+                  id="global-stop-recording"
+                >
+                  <Square className="mr-1 h-3 w-3" />
+                  Stop Recording
+                </Button>
+              )}
+            </div>
           </div>
         </div>
       </nav>
