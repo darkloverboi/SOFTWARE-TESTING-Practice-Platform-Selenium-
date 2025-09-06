@@ -11,6 +11,8 @@ import Tables from "./pages/Tables";
 import UploadDownload from "./pages/UploadDownload";
 import Alerts from "./pages/Alerts";
 import Dynamic from "./pages/Dynamic";
+import Advanced from "./pages/Advanced";
+import Recorder from "./pages/Recorder";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +32,8 @@ const App = () => (
           <Route path="/upload-download" element={<UploadDownload />} />
           <Route path="/alerts" element={<Alerts />} />
           <Route path="/dynamic" element={<Dynamic />} />
+          <Route path="/advanced" element={<Advanced />} />
+          <Route path="/recorder" element={<Recorder />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

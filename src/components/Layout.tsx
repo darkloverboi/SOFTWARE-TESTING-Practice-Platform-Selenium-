@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { InspectButton } from "./InspectButton";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -16,10 +17,13 @@ export const Layout = ({ children }: LayoutProps) => {
     { path: "/upload-download", label: "Upload/Download", id: "nav-upload" },
     { path: "/alerts", label: "Alerts", id: "nav-alerts" },
     { path: "/dynamic", label: "Dynamic Content", id: "nav-dynamic" },
+    { path: "/advanced", label: "Advanced Testing", id: "nav-advanced" },
+    { path: "/recorder", label: "Test Recorder", id: "nav-recorder" },
   ];
 
   return (
     <div className="min-h-screen bg-background">
+      <InspectButton />
       {/* Header */}
       <header className="bg-header-bg text-header-fg shadow-lg">
         <div className="container mx-auto px-4 py-4">
