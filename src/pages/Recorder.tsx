@@ -89,49 +89,82 @@ export default function Recorder() {
     toast.success("All steps cleared");
   };
 
-  const exportToPDF = () => {
+  const printTestSteps = () => {
     if (testSteps.length === 0) {
-      toast.error("No test steps to export");
+      toast.error("No test steps to print");
       return;
     }
 
-    const doc = new jsPDF();
+    // Create a new window with the printable content
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) {
+      toast.error("Pop-up blocked. Please allow pop-ups for this site.");
+      return;
+    }
+
+    const printContent = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Test Case Recording</title>
+          <style>
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            h1 { color: #333; margin-bottom: 20px; }
+            .meta-info { margin-bottom: 20px; color: #666; }
+            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+            th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+            th { background-color: #f5f5f5; font-weight: bold; }
+            .step-no { text-align: center; font-family: monospace; }
+            @media print {
+              body { margin: 0; }
+              table { page-break-inside: auto; }
+              tr { page-break-inside: avoid; page-break-after: auto; }
+            }
+          </style>
+        </head>
+        <body>
+          <h1>Test Case Recording</h1>
+          <div class="meta-info">
+            <p><strong>Generated on:</strong> ${new Date().toLocaleString()}</p>
+            <p><strong>Total Steps:</strong> ${testSteps.length}</p>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Step No.</th>
+                <th>Action Type</th>
+                <th>Target Element</th>
+                <th>Value</th>
+                <th>Expected Result</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${testSteps.map(step => `
+                <tr>
+                  <td class="step-no">${step.stepNo}</td>
+                  <td>${step.actionType}</td>
+                  <td>${step.targetElement}</td>
+                  <td>${step.value || '-'}</td>
+                  <td>${step.expectedResult || '-'}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </body>
+      </html>
+    `;
+
+    printWindow.document.write(printContent);
+    printWindow.document.close();
     
-    // Title
-    doc.setFontSize(20);
-    doc.text('Test Case Recording', 20, 20);
+    // Wait for content to load, then print
+    printWindow.onload = () => {
+      printWindow.print();
+      // Close the window after printing (optional)
+      printWindow.onafterprint = () => printWindow.close();
+    };
     
-    doc.setFontSize(12);
-    doc.text(`Generated on: ${new Date().toLocaleString()}`, 20, 35);
-    doc.text(`Total Steps: ${testSteps.length}`, 20, 45);
-
-    // Table data
-    const tableData = testSteps.map(step => [
-      step.stepNo,
-      step.actionType,
-      step.targetElement,
-      step.value || '-',
-      step.expectedResult || '-'
-    ]);
-
-    // Add table
-    (doc as any).autoTable({
-      head: [['Step No.', 'Action Type', 'Target Element', 'Value', 'Expected Result']],
-      body: tableData,
-      startY: 60,
-      styles: { fontSize: 10 },
-      headStyles: { fillColor: [66, 139, 202] },
-      columnStyles: {
-        0: { halign: 'center', cellWidth: 20 },
-        1: { cellWidth: 35 },
-        2: { cellWidth: 45 },
-        3: { cellWidth: 35 },
-        4: { cellWidth: 45 }
-      }
-    });
-
-    doc.save('test-case-recording.pdf');
-    toast.success("PDF exported successfully!");
+    toast.success("Print dialog opened!");
   };
 
   const exportToDocx = () => {
@@ -364,9 +397,9 @@ export default function Recorder() {
                     <Download className="mr-2 h-4 w-4" />
                     Export HTML/DOCX
                   </Button>
-                  <Button onClick={exportToPDF} id="export-pdf-btn">
+                  <Button onClick={printTestSteps} id="print-test-steps-btn">
                     <Download className="mr-2 h-4 w-4" />
-                    Export PDF
+                    Print Test Steps
                   </Button>
                 </div>
               </div>

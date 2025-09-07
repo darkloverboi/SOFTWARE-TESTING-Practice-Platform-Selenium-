@@ -11,52 +11,86 @@ import 'jspdf-autotable';
 export default function RecordedActions() {
   const { actions, isRecording, startRecording, stopRecording, clearActions } = useActionRecorder();
 
-  const exportToPDF = () => {
+  const printActions = () => {
     if (actions.length === 0) {
-      toast.error("No actions to export");
+      toast.error("No actions to print");
       return;
     }
 
-    const doc = new jsPDF();
+    // Create a new window with the printable content
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) {
+      toast.error("Pop-up blocked. Please allow pop-ups for this site.");
+      return;
+    }
+
+    const printContent = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Recorded Actions Report</title>
+          <style>
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            h1 { color: #333; margin-bottom: 20px; }
+            .meta-info { margin-bottom: 20px; color: #666; }
+            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+            th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+            th { background-color: #f5f5f5; font-weight: bold; }
+            .step-no { text-align: center; font-family: monospace; }
+            .timestamp { font-family: monospace; font-size: 0.9em; }
+            @media print {
+              body { margin: 0; }
+              table { page-break-inside: auto; }
+              tr { page-break-inside: avoid; page-break-after: auto; }
+            }
+          </style>
+        </head>
+        <body>
+          <h1>Recorded Actions Report</h1>
+          <div class="meta-info">
+            <p><strong>Generated on:</strong> ${new Date().toLocaleString()}</p>
+            <p><strong>Total Actions:</strong> ${actions.length}</p>
+            <p><strong>Recording Status:</strong> ${isRecording ? 'Active' : 'Stopped'}</p>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Step</th>
+                <th>Action</th>
+                <th>Target</th>
+                <th>Value</th>
+                <th>Page</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${actions.map(action => `
+                <tr>
+                  <td class="step-no">${action.stepNo}</td>
+                  <td>${action.actionType}</td>
+                  <td>${action.targetElement}</td>
+                  <td>${action.value || '-'}</td>
+                  <td>${action.page}</td>
+                  <td class="timestamp">${action.timestamp}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </body>
+      </html>
+    `;
+
+    printWindow.document.write(printContent);
+    printWindow.document.close();
     
-    // Title
-    doc.setFontSize(20);
-    doc.text('Recorded Actions Report', 20, 20);
+    // Wait for content to load, then print
+    printWindow.onload = () => {
+      printWindow.print();
+      // Close the window after printing (optional)
+      printWindow.onafterprint = () => printWindow.close();
+    };
     
-    doc.setFontSize(12);
-    doc.text(`Generated on: ${new Date().toLocaleString()}`, 20, 35);
-    doc.text(`Total Actions: ${actions.length}`, 20, 45);
-    doc.text(`Recording Status: ${isRecording ? 'Active' : 'Stopped'}`, 20, 55);
-
-    // Table data
-    const tableData = actions.map(action => [
-      action.stepNo,
-      action.actionType,
-      action.targetElement,
-      action.value || '-',
-      action.page,
-      action.timestamp
-    ]);
-
-    // Add table
-    (doc as any).autoTable({
-      head: [['Step', 'Action', 'Target', 'Value', 'Page', 'Time']],
-      body: tableData,
-      startY: 70,
-      styles: { fontSize: 9 },
-      headStyles: { fillColor: [66, 139, 202] },
-      columnStyles: {
-        0: { halign: 'center', cellWidth: 15 },
-        1: { cellWidth: 25 },
-        2: { cellWidth: 40 },
-        3: { cellWidth: 30 },
-        4: { cellWidth: 25 },
-        5: { cellWidth: 25 }
-      }
-    });
-
-    doc.save('recorded-actions.pdf');
-    toast.success("PDF exported successfully!");
+    toast.success("Print dialog opened!");
   };
 
   const exportToDocx = async () => {
@@ -225,9 +259,9 @@ export default function RecordedActions() {
                     <Download className="mr-2 h-4 w-4" />
                     Export HTML/DOCX
                   </Button>
-                  <Button onClick={exportToPDF} id="export-pdf-actions-btn">
+                  <Button onClick={printActions} id="print-actions-btn">
                     <Download className="mr-2 h-4 w-4" />
-                    Export PDF
+                    Print Actions
                   </Button>
                 </div>
               </div>
