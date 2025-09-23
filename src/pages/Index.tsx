@@ -53,6 +53,13 @@ const Index = () => {
       path: "/dynamic",
       id: "test-dynamic",
       elements: ["Toggle visibility", "Progress bars", "Countdown timers", "AJAX loading"]
+    },
+    {
+      title: "Dropdown Testing",
+      description: "Various dropdown types including standard, custom, and dependent",
+      path: "/dropdowns",
+      id: "test-dropdowns",
+      elements: ["Standard select", "Multi-select", "Custom dropdown", "Dependent dropdowns"]
     }
   ];
 
