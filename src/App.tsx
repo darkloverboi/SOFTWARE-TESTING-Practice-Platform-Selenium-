@@ -15,6 +15,7 @@ import Advanced from "./pages/Advanced";
 import Recorder from "./pages/Recorder";
 import RecordedActions from "./pages/RecordedActions";
 import Dropdowns from "./pages/Dropdowns";
+import Credits from "./pages/Credits";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +39,7 @@ const App = () => (
           <Route path="/recorder" element={<Recorder />} />
           <Route path="/recorded-actions" element={<RecordedActions />} />
           <Route path="/dropdowns" element={<Dropdowns />} />
+          <Route path="/credits" element={<Credits />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -1,4 +1,19 @@
 # Redirect all requests to index.html for client-side routing
+# Handle client-side routing for React app
+/login/* /index.html 200
+/forms/* /index.html 200
+/links/* /index.html 200
+/tables/* /index.html 200
+/upload-download/* /index.html 200
+/alerts/* /index.html 200
+/dynamic/* /index.html 200
+/advanced/* /index.html 200
+/recorder/* /index.html 200
+/recorded-actions/* /index.html 200
+/dropdowns/* /index.html 200
+/credits/* /index.html 200
+
+# Fallback for all other routes
 /*    /index.html   200
 
 # Handle specific routes

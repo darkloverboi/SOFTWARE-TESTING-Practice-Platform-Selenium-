@@ -6,60 +6,81 @@ import { Link } from "react-router-dom";
 const Index = () => {
   const testPages = [
     {
-      title: "Login Testing",
+      title: "Login Page",
+      icon: "🔑",
       description: "Username/password forms, validation, error messages",
       path: "/login",
-      id: "test-login",
-      elements: ["Input fields", "Submit button", "Error handling", "Forgot password link"]
+      id: "test-login"
     },
     {
-      title: "Form Elements",
+      title: "Forms Page", 
+      icon: "📝",
       description: "Various input types, dropdowns, checkboxes, radio buttons",
       path: "/forms",
-      id: "test-forms",
-      elements: ["Text inputs", "Radio buttons", "Checkboxes", "Select dropdown"]
+      id: "test-forms"
     },
     {
-      title: "Link Testing",
+      title: "Links Page",
+      icon: "🔗", 
       description: "Different link types, broken links, external links",
       path: "/links",
-      id: "test-links",
-      elements: ["Internal links", "External links", "Broken links", "Anchor links"]
+      id: "test-links"
     },
     {
-      title: "Table Operations",
-      description: "Static and dynamic tables, sorting, pagination",
+      title: "Tables Page",
+      icon: "📊",
+      description: "Static and dynamic tables, sorting, pagination", 
       path: "/tables",
-      id: "test-tables",
-      elements: ["Static table", "Sortable columns", "Pagination", "Row selection"]
+      id: "test-tables"
     },
     {
-      title: "File Upload/Download",
+      title: "Upload & Download",
+      icon: "📂",
       description: "File upload functionality and download testing",
-      path: "/upload-download",
-      id: "test-files",
-      elements: ["File input", "Upload progress", "Download buttons", "Multiple files"]
+      path: "/upload-download", 
+      id: "test-files"
     },
     {
       title: "Alerts & Popups",
+      icon: "⚠️",
       description: "JavaScript alerts, confirms, prompts and custom dialogs",
       path: "/alerts",
-      id: "test-alerts",
-      elements: ["Alert boxes", "Confirm dialogs", "Prompt inputs", "Custom modals"]
+      id: "test-alerts"
     },
     {
-      title: "Dynamic Content",
+      title: "Dynamic Content", 
+      icon: "🔄",
       description: "Show/hide elements, loading states, real-time updates",
       path: "/dynamic",
-      id: "test-dynamic",
-      elements: ["Toggle visibility", "Progress bars", "Countdown timers", "AJAX loading"]
+      id: "test-dynamic"
     },
     {
-      title: "Dropdown Testing",
+      title: "Advanced Testing",
+      icon: "🧩",
+      description: "Shadow DOM, iframes, drag & drop, complex interactions",
+      path: "/advanced",
+      id: "test-advanced"
+    },
+    {
+      title: "Test Recorder",
+      icon: "🎥", 
+      description: "Record test steps and export as PDF or Markdown",
+      path: "/recorder",
+      id: "test-recorder"
+    },
+    {
+      title: "Dropdowns",
+      icon: "⬇️",
       description: "Various dropdown types including standard, custom, and dependent",
       path: "/dropdowns",
-      id: "test-dropdowns",
-      elements: ["Standard select", "Multi-select", "Custom dropdown", "Dependent dropdowns"]
+      id: "test-dropdowns"
+    },
+    {
+      title: "Credits", 
+      icon: "👨‍💻",
+      description: "Meet the team behind this testing platform",
+      path: "/credits",
+      id: "test-credits"
     }
   ];
 
@@ -82,37 +103,32 @@ const Index = () => {
           </p>
         </div>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Features Grid - Card Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {testPages.map((page, index) => (
-            <Card key={index} id={page.id} className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <CardTitle className="flex items-center justify-between">
-                  <span>{page.title}</span>
-                  <span className="text-sm bg-primary/10 text-primary px-2 py-1 rounded">
-                    {index + 1}
-                  </span>
-                </CardTitle>
-                <CardDescription>{page.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
+            <Link key={index} to={page.path} id={`${page.id}-card`}>
+              <Card className="h-full hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer group border-2 hover:border-primary/30">
+                <CardContent className="p-6 text-center h-full flex flex-col justify-between">
                   <div>
-                    <h4 className="font-medium text-sm mb-2">Test Elements:</h4>
-                    <ul className="text-sm text-muted-foreground space-y-1">
-                      {page.elements.map((element, idx) => (
-                        <li key={idx}>• {element}</li>
-                      ))}
-                    </ul>
+                    <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                      {page.icon}
+                    </div>
+                    <CardTitle className="text-lg mb-3 group-hover:text-primary transition-colors">
+                      {page.title}
+                    </CardTitle>
+                    <CardDescription className="text-sm leading-relaxed">
+                      {page.description}
+                    </CardDescription>
                   </div>
-                  <Link to={page.path}>
-                    <Button className="w-full" id={`${page.id}-button`}>
-                      Start Testing
-                    </Button>
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
+                  <Button 
+                    className="w-full mt-4 group-hover:bg-primary-hover" 
+                    id={`${page.id}-button`}
+                  >
+                    Start Testing
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
 
