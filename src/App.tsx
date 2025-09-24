@@ -17,6 +17,17 @@ import RecordedActions from "./pages/RecordedActions";
 import Dropdowns from "./pages/Dropdowns";
 import Credits from "./pages/Credits";
 import NotFound from "./pages/NotFound";
+import AlertsSimple from "./pages/AlertsSimple";
+import AlertsConfirm from "./pages/AlertsConfirm";
+import AlertsPrompt from "./pages/AlertsPrompt";
+import ShowHide from "./pages/ShowHide";
+import ProgressBar from "./pages/ProgressBar";
+import Countdown from "./pages/Countdown";
+import ShadowDOM from "./pages/ShadowDOM";
+import Iframes from "./pages/Iframes";
+import DragDrop from "./pages/DragDrop";
+import InfiniteScroll from "./pages/InfiniteScroll";
+import AjaxTable from "./pages/AjaxTable";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +50,17 @@ const App = () => (
           <Route path="/recorder" element={<Recorder />} />
           <Route path="/recorded-actions" element={<RecordedActions />} />
           <Route path="/dropdowns" element={<Dropdowns />} />
+          <Route path="/alerts-simple" element={<AlertsSimple />} />
+          <Route path="/alerts-confirm" element={<AlertsConfirm />} />
+          <Route path="/alerts-prompt" element={<AlertsPrompt />} />
+          <Route path="/show-hide" element={<ShowHide />} />
+          <Route path="/progress-bar" element={<ProgressBar />} />
+          <Route path="/countdown" element={<Countdown />} />
+          <Route path="/shadow-dom" element={<ShadowDOM />} />
+          <Route path="/iframes" element={<Iframes />} />
+          <Route path="/drag-drop" element={<DragDrop />} />
+          <Route path="/infinite-scroll" element={<InfiniteScroll />} />
+          <Route path="/ajax-table" element={<AjaxTable />} />
           <Route path="/credits" element={<Credits />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
