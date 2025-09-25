@@ -11,6 +11,12 @@
 /recorder/* /index.html 200
 /recorded-actions/* /index.html 200
 /dropdowns/* /index.html 200
+/iframe-basic/* /index.html 200
+/iframe-nested/* /index.html 200
+/iframe-multiple/* /index.html 200
+/iframe-scrollable/* /index.html 200
+/iframe-links/* /index.html 200
+/iframe-form/* /index.html 200
 /credits/* /index.html 200
 
 # Fallback for all other routes
@@ -21,6 +27,12 @@
 /recorder    /index.html   200
 /recorded-actions    /index.html   200
 /dropdowns    /index.html   200
+/iframe-basic    /index.html   200
+/iframe-nested    /index.html   200
+/iframe-multiple    /index.html   200
+/iframe-scrollable    /index.html   200
+/iframe-links    /index.html   200
+/iframe-form    /index.html   200
 /forms    /index.html   200
 /tables    /index.html   200
 /alerts    /index.html   200

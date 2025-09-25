@@ -28,6 +28,12 @@ import Iframes from "./pages/Iframes";
 import DragDrop from "./pages/DragDrop";
 import InfiniteScroll from "./pages/InfiniteScroll";
 import AjaxTable from "./pages/AjaxTable";
+import IframeBasic from "./pages/IframeBasic";
+import IframeNested from "./pages/IframeNested";
+import IframeMultiple from "./pages/IframeMultiple";
+import IframeScrollable from "./pages/IframeScrollable";
+import IframeLinks from "./pages/IframeLinks";
+import IframeForm from "./pages/IframeForm";
 
 const queryClient = new QueryClient();
 
@@ -61,6 +67,12 @@ const App = () => (
           <Route path="/drag-drop" element={<DragDrop />} />
           <Route path="/infinite-scroll" element={<InfiniteScroll />} />
           <Route path="/ajax-table" element={<AjaxTable />} />
+          <Route path="/iframe-basic" element={<IframeBasic />} />
+          <Route path="/iframe-nested" element={<IframeNested />} />
+          <Route path="/iframe-multiple" element={<IframeMultiple />} />
+          <Route path="/iframe-scrollable" element={<IframeScrollable />} />
+          <Route path="/iframe-links" element={<IframeLinks />} />
+          <Route path="/iframe-form" element={<IframeForm />} />
           <Route path="/credits" element={<Credits />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

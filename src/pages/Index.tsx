@@ -76,6 +76,13 @@ const Index = () => {
       id: "test-dropdowns"
     },
     {
+      title: "Frames",
+      icon: "🖼️",
+      description: "Basic, nested, multiple, scrollable, links, and form iframes",
+      path: "/iframe-basic",
+      id: "test-frames"
+    },
+    {
       title: "Credits", 
       icon: "👨‍💻",
       description: "Meet the team behind this testing platform",
