@@ -34,6 +34,11 @@ import IframeMultiple from "./pages/IframeMultiple";
 import IframeScrollable from "./pages/IframeScrollable";
 import IframeLinks from "./pages/IframeLinks";
 import IframeForm from "./pages/IframeForm";
+import DropdownStandard from "./pages/DropdownStandard";
+import DropdownMulti from "./pages/DropdownMulti";
+import DropdownCustom from "./pages/DropdownCustom";
+import DropdownDisabled from "./pages/DropdownDisabled";
+import DropdownDependent from "./pages/DropdownDependent";
 
 const queryClient = new QueryClient();
 
@@ -73,6 +78,11 @@ const App = () => (
           <Route path="/iframe-scrollable" element={<IframeScrollable />} />
           <Route path="/iframe-links" element={<IframeLinks />} />
           <Route path="/iframe-form" element={<IframeForm />} />
+          <Route path="/dropdown-standard" element={<DropdownStandard />} />
+          <Route path="/dropdown-multi" element={<DropdownMulti />} />
+          <Route path="/dropdown-custom" element={<DropdownCustom />} />
+          <Route path="/dropdown-disabled" element={<DropdownDisabled />} />
+          <Route path="/dropdown-dependent" element={<DropdownDependent />} />
           <Route path="/credits" element={<Credits />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

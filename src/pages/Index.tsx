@@ -5,90 +5,48 @@ import { Link } from "react-router-dom";
 
 const Index = () => {
   const testPages = [
-    {
-      title: "Login Page",
-      icon: "🔑",
-      description: "Username/password forms, validation, error messages",
-      path: "/login",
-      id: "test-login"
-    },
-    {
-      title: "Forms Page", 
-      icon: "📝",
-      description: "Various input types, dropdowns, checkboxes, radio buttons",
-      path: "/forms",
-      id: "test-forms"
-    },
-    {
-      title: "Links Page",
-      icon: "🔗", 
-      description: "Different link types, broken links, external links",
-      path: "/links",
-      id: "test-links"
-    },
-    {
-      title: "Tables Page",
-      icon: "📊",
-      description: "Static and dynamic tables, sorting, pagination", 
-      path: "/tables",
-      id: "test-tables"
-    },
-    {
-      title: "Upload & Download",
-      icon: "📂",
-      description: "File upload functionality and download testing",
-      path: "/upload-download", 
-      id: "test-files"
-    },
-    {
-      title: "Alerts & Popups",
-      icon: "⚠️",
-      description: "JavaScript alerts, confirms, prompts and custom dialogs",
-      path: "/alerts",
-      id: "test-alerts"
-    },
-    {
-      title: "Dynamic Content", 
-      icon: "🔄",
-      description: "Show/hide elements, loading states, real-time updates",
-      path: "/dynamic",
-      id: "test-dynamic"
-    },
-    {
-      title: "Advanced Testing",
-      icon: "🧩",
-      description: "Shadow DOM, iframes, drag & drop, complex interactions",
-      path: "/advanced",
-      id: "test-advanced"
-    },
-    {
-      title: "Test Recorder",
-      icon: "🎥", 
-      description: "Record test steps and export as PDF or Markdown",
-      path: "/recorder",
-      id: "test-recorder"
-    },
-    {
-      title: "Dropdowns",
-      icon: "⬇️",
-      description: "Various dropdown types including standard, custom, and dependent",
-      path: "/dropdowns",
-      id: "test-dropdowns"
-    },
-    {
-      title: "Frames",
-      icon: "🖼️",
-      description: "Basic, nested, multiple, scrollable, links, and form iframes",
-      path: "/iframe-basic",
-      id: "test-frames"
-    },
-    {
-      title: "Credits", 
-      icon: "👨‍💻",
-      description: "Meet the team behind this testing platform",
-      path: "/credits",
-      id: "test-credits"
-    }
+    // Core Pages
+    { title: "Login Page", icon: "🔑", description: "Username/password forms, validation, error messages", path: "/login", id: "test-login" },
+    { title: "Forms Page", icon: "📝", description: "Various input types, dropdowns, checkboxes, radio buttons", path: "/forms", id: "test-forms" },
+    { title: "Links Page", icon: "🔗", description: "Different link types, broken links, external links", path: "/links", id: "test-links" },
+    { title: "Tables Page", icon: "📊", description: "Static and dynamic tables, sorting, pagination", path: "/tables", id: "test-tables" },
+    { title: "Upload & Download", icon: "📂", description: "File upload functionality and download testing", path: "/upload-download", id: "test-files" },
+    
+    // Alerts (Individual Pages)
+    { title: "Simple Alert", icon: "⚠️", description: "JavaScript alert with OK button", path: "/alerts-simple", id: "test-alert-simple" },
+    { title: "Confirm Alert", icon: "❓", description: "Confirmation dialog with OK/Cancel", path: "/alerts-confirm", id: "test-alert-confirm" },
+    { title: "Prompt Alert", icon: "✏️", description: "Prompt dialog with text input", path: "/alerts-prompt", id: "test-alert-prompt" },
+    
+    // Dynamic Content (Individual Pages)
+    { title: "Show/Hide Elements", icon: "👁️", description: "Toggle visibility of elements", path: "/show-hide", id: "test-show-hide" },
+    { title: "Progress Bar", icon: "⏳", description: "Loading states and progress indicators", path: "/progress-bar", id: "test-progress" },
+    { title: "Countdown Timer", icon: "⏱️", description: "Auto-updating countdown timer", path: "/countdown", id: "test-countdown" },
+    
+    // Advanced Testing (Individual Pages)
+    { title: "Shadow DOM", icon: "🌑", description: "Shadow DOM element interaction", path: "/shadow-dom", id: "test-shadow-dom" },
+    { title: "Nested Iframes", icon: "🪆", description: "Multiple nested iframe levels", path: "/iframes", id: "test-iframes" },
+    { title: "Drag & Drop", icon: "🎯", description: "Drag and drop interactions", path: "/drag-drop", id: "test-drag-drop" },
+    { title: "Infinite Scroll", icon: "🔄", description: "Infinite scrolling content", path: "/infinite-scroll", id: "test-infinite-scroll" },
+    { title: "AJAX Table", icon: "🔃", description: "AJAX-updated dynamic table", path: "/ajax-table", id: "test-ajax-table" },
+    
+    // Frames (Individual Pages)
+    { title: "Basic Iframe", icon: "🖼️", description: "Single iframe with text and button", path: "/iframe-basic", id: "test-iframe-basic" },
+    { title: "Nested Iframes", icon: "🪆", description: "Parent and child nested iframes", path: "/iframe-nested", id: "test-iframe-nested" },
+    { title: "Multiple Iframes", icon: "📐", description: "Three side-by-side iframes", path: "/iframe-multiple", id: "test-iframe-multiple" },
+    { title: "Scrollable Iframe", icon: "📜", description: "Iframe with long scrollable content", path: "/iframe-scrollable", id: "test-iframe-scrollable" },
+    { title: "Iframe with Links", icon: "🔗", description: "External links within iframe", path: "/iframe-links", id: "test-iframe-links" },
+    { title: "Iframe with Form", icon: "📋", description: "Login form inside iframe", path: "/iframe-form", id: "test-iframe-form" },
+    
+    // Dropdowns (Individual Pages)
+    { title: "Standard Dropdown", icon: "⬇️", description: "Standard HTML select dropdown", path: "/dropdown-standard", id: "test-dropdown-standard" },
+    { title: "Multi-Select", icon: "☑️", description: "Multi-select dropdown with checkboxes", path: "/dropdown-multi", id: "test-dropdown-multi" },
+    { title: "Custom Dropdown", icon: "🎨", description: "Custom div-based dropdown", path: "/dropdown-custom", id: "test-dropdown-custom" },
+    { title: "Disabled Dropdown", icon: "🚫", description: "Disabled dropdown element", path: "/dropdown-disabled", id: "test-dropdown-disabled" },
+    { title: "Dependent Dropdown", icon: "🔀", description: "Cascading Country → State dropdown", path: "/dropdown-dependent", id: "test-dropdown-dependent" },
+    
+    // Utilities
+    { title: "Test Recorder", icon: "🎥", description: "Record test steps and export as PDF", path: "/recorder", id: "test-recorder" },
+    { title: "Credits", icon: "👨‍💻", description: "Meet the team behind this testing platform", path: "/credits", id: "test-credits" }
   ];
 
   return (
