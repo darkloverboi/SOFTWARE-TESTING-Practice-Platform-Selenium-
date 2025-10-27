@@ -8,10 +8,8 @@ export const MiniFooter = () => {
           ✨ DARKLOVERBOI PRESENCE – Testing Website for Free ✨
         </p>
         <p className="text-muted-foreground text-xs mt-1">
-          Created by{" "}
-          <span className="text-primary font-semibold">Shebin K Babu (Ben)</span>
-          {" "}• Co-Developer:{" "}
-          <span className="text-accent font-semibold">Rakshitha M</span>
+          Developer:{" "}
+          <span className="text-primary font-semibold">Rakshitha M</span>
           {" "}• Mentor:{" "}
           <span className="text-success font-semibold">Shreedhar Sir</span>
         </p>
