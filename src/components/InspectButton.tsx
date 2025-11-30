@@ -31,7 +31,7 @@ export const InspectButton = () => {
         size="sm"
         variant="destructive"
         onClick={handleInspectClick}
-        className="fixed top-4 right-4 z-50 bg-red-600 hover:bg-red-700"
+        className="bg-destructive hover:bg-destructive-hover"
         id="inspect-button"
       >
         <Eye className="h-4 w-4 mr-1" />
