@@ -1,4 +1,4 @@
-# 🚀 Selenium Testing Practice Platform
+# 🚀 SOFTWARE TESTING Practice Platform  Selenium 
 
 > 🔗 **Live Website:*https://softwaretestingpro.netlify.app/*
 
