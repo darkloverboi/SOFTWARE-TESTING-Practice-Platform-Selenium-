@@ -226,7 +226,11 @@ This platform is intended strictly for:
 ## 📬 Contact & Credits
 
 **Created by:** Shebin K Babu (darkloverboi)  
-**Email:** kshebin86@gmail.com  
+this is my official GitHub. 
+email.kshebin86@gmail.com 
+Linkedin : https://www.linkedin.com/in/shebink1/ 
+My portfolio : https://darkloverboi.space 
+Follow for cybersecurity and AI project updates.
 
 For landing page collaboration, project inquiries, or testing-related discussions, feel free to reach out via email.
 
