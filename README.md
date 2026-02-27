@@ -1,6 +1,6 @@
 # 🚀 SOFTWARE TESTING Practice Platform  Selenium 
 
-> 🔗 **Live Website:*https://softwaretestingpro.netlify.app/*
+> 🔗 **Live Website:*https://softwaretestingprooo.netlify.app/*
 
 This project is built for practicing and demonstrating Selenium automation testing skills using JavaScript.  
 It is designed to simulate real-world UI testing scenarios including navigation flows, form validation, element interaction, and end-to-end browser automation.  
